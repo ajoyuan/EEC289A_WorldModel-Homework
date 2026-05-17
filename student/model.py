@@ -9,14 +9,6 @@ from __future__ import annotations
 import torch
 from torch import nn
 
-
-"""Student world model with fine-tuned contractive noise injection."""
-
-from __future__ import annotations
-
-import torch
-from torch import nn
-
 class StudentWorldModel(nn.Module):
     def __init__(
         self,
