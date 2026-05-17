@@ -10,6 +10,13 @@ import torch
 from torch import nn
 
 
+"""Student world model with fine-tuned contractive noise injection."""
+
+from __future__ import annotations
+
+import torch
+from torch import nn
+
 class StudentWorldModel(nn.Module):
     def __init__(
         self,
@@ -36,9 +43,8 @@ class StudentWorldModel(nn.Module):
         return None
 
     def forward(self, obs_norm: torch.Tensor, act_norm: torch.Tensor, hidden=None):
-        # UPGRADED: Scaled down to 0.001 to clear out early micro-variance
         if self.training:
-            obs_norm = obs_norm + torch.randn_like(obs_norm) * 0.001
+            obs_norm = obs_norm + torch.randn_like(obs_norm) * 0.003
 
         feat = self.encoder(torch.cat([obs_norm, act_norm], dim=-1))
         raw_delta = self.head(feat)
