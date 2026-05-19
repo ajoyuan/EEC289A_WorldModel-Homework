@@ -22,9 +22,9 @@ training:
   checkpoint_mode: max
 
 loss:
-  one_step_weight: 2.0
+  one_step_weight: 1.0
   rollout_weight: 2.0
-  rollout_train_horizon: 40
+  rollout_train_horizon: 35
 
 eval:
   warmup_steps: 10
