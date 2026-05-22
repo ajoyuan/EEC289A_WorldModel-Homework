@@ -39,7 +39,10 @@ def rollout_loss(model, states: torch.Tensor, actions: torch.Tensor, normalizer,
     targets = sub_states[:, warmup_steps + 1 : warmup_steps + 1 + horizon]
     pred_norm = normalizer.normalize_obs(preds)
     target_norm = normalizer.normalize_obs(targets)
-    return F.mse_loss(pred_norm, target_norm)
+    # ramp weight from 1.0 at step 1 to 2.0 at the final step so early steps
+    # still get full gradient while later steps get extra push
+    step_weights = torch.linspace(1.0, 2.0, horizon, device=preds.device).view(1, horizon, 1)
+    return (((pred_norm - target_norm) ** 2) * step_weights).mean()
 
 
 def compute_loss(model, batch: dict[str, torch.Tensor], normalizer, cfg: dict):
