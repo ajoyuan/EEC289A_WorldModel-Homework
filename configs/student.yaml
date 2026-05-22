@@ -5,15 +5,15 @@ torch_num_threads: 1
 model:
   hidden_dim: 256
   num_layers: 3
-  use_gru: false
+  use_gru: true
 
 training:
   batch_size: 256
-  updates: 3000
+  updates: 18000
   smoke_updates: 120
-  train_sequence_length: 64
-  learning_rate: 5.0e-4
-  grad_clip_norm: 5.0
+  train_sequence_length: 256
+  learning_rate: 1.0e-4
+  grad_clip_norm: 1.0
   eval_every: 200
   smoke_eval_every: 20
   val_horizon: 200
@@ -22,9 +22,9 @@ training:
   checkpoint_mode: max
 
 loss:
-  one_step_weight: 1.0
-  rollout_weight: 2.0
-  rollout_train_horizon: 35
+  one_step_weight: 0.5
+  rollout_weight: 2.5
+  rollout_train_horizon: 88
 
 eval:
   warmup_steps: 10
