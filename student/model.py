@@ -54,5 +54,3 @@ class StudentWorldModel(nn.Module):
         raw_delta = self.head(x)
         delta = self.delta_limit * torch.tanh(raw_delta / self.delta_limit)
         return delta, hidden
-        delta = self.delta_limit * torch.tanh(raw_delta / self.delta_limit)
-        return delta, hidden
