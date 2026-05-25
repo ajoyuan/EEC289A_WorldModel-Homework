@@ -1,7 +1,5 @@
 """Student one-step plus rollout loss."""
 
-"""Student one-step plus rollout loss."""
-
 from __future__ import annotations
 
 import torch
