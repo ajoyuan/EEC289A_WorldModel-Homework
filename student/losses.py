@@ -1,5 +1,7 @@
 """Student one-step plus rollout loss."""
 
+"""Student one-step plus rollout loss."""
+
 from __future__ import annotations
 
 import torch
@@ -59,3 +61,4 @@ def compute_loss(model, batch: dict[str, torch.Tensor], normalizer, cfg: dict):
         "loss/one_step": float(one.detach().cpu()),
         "loss/rollout": float(roll.detach().cpu()),
     }
+
